@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">SportNote</string>
+    <string name="menu">Menu</string>
+    <string name="stats">Stats</string>
+    <string name="exercises">Exercises</string>
+    <string name="search">Search</string>
+    <string name="new_training">New Training</string>
 </resources>

@@ -1,6 +1,5 @@
 package com.jamesfrench.sportnote.ui.theme
 
-import android.app.Activity
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
@@ -16,8 +15,8 @@ private val DarkColorScheme = darkColorScheme(
     primary = Color(0xFF1A34DA),
     onPrimary = Color(color=0xFFFFFFFF),
 
-    primaryContainer = Color(color = 0xFF1E2026),
-    onPrimaryContainer = Color(color=0xFFFFFFFF),
+    surfaceContainer = Color(color = 0xFF1E2026),
+    onSurface = Color(color = 0xFFFFFFFF),
 
     background = Color(color=0xFF121318),
 )
@@ -26,8 +25,8 @@ private val LightColorScheme = lightColorScheme(
     primary = Color(0xFF1A34DA),
     onPrimary = Color(color = 0xFFFFFFFF),
 
-    primaryContainer = Color(color = 0xFFCDCDD5),
-    onPrimaryContainer = Color(color = 0xFF000000),
+    surfaceContainer = Color(color = 0xFFCDCDD5),
+    onSurface = Color(color = 0xFF000000),
 
     background = Color(color = 0xFFE6E7ED),
     /* Other default colors to override

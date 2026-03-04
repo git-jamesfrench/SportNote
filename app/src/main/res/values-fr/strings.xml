@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SportNote</string>
+    <string name="menu">Menu</string>
+    <string name="stats">Statistiques</string>
+    <string name="exercises">Exercices</string>
+    <string name="search">Rechercher</string>
+    <string name="new_training">Nouvel entraînement</string>
+</resources>
