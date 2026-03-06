@@ -16,6 +16,8 @@ private val DarkColorScheme = darkColorScheme(
     onPrimary = Color(color=0xFFFFFFFF),
 
     surfaceContainer = Color(color = 0xFF1E2026),
+    surfaceContainerHigh = Color(color = 0xFF282831),
+    surfaceContainerHighest = Color(color = 0xFF363644),
     onSurface = Color(color = 0xFFFFFFFF),
 
     background = Color(color=0xFF121318),
@@ -25,10 +27,13 @@ private val LightColorScheme = lightColorScheme(
     primary = Color(0xFF1A34DA),
     onPrimary = Color(color = 0xFFFFFFFF),
 
-    surfaceContainer = Color(color = 0xFFCDCDD5),
+    surfaceContainer = Color(color = 0xFFE0E0E7),
+    surfaceContainerHigh = Color(color = 0xFFC7C7D2),
+    surfaceContainerHighest = Color(color = 0xFFBDBDC7),
     onSurface = Color(color = 0xFF000000),
 
     background = Color(color = 0xFFE6E7ED),
+
     /* Other default colors to override
     background = Color(0xFFFFFBFE),
     surface = Color(0xFFFFFBFE),

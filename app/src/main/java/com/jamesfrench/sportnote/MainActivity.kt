@@ -1,6 +1,6 @@
 package com.jamesfrench.sportnote
 
-import android.R.attr.fontWeight
+import android.annotation.SuppressLint
 import android.content.pm.ActivityInfo
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -37,10 +37,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.jamesfrench.sportnote.ui.theme.SportNoteTheme
-import com.jamesfrench.sportnote.ui.theme.fontInter
 import com.jamesfrench.sportnote.ui.theme.fontJost
 
 class MainActivity : ComponentActivity() {
+    @SuppressLint("SourceLockedOrientationActivity")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -99,6 +99,13 @@ fun MainPage(modifier: Modifier = Modifier) {
             verticalArrangement = Arrangement.spacedBy(5.dp)
         ) {
             Exercise()
+            Spacer(
+                modifier = Modifier
+                    .height(1.dp)
+                    .fillMaxWidth()
+                    .background(MaterialTheme.colorScheme.surfaceContainerHigh)
+            )
+            Exercise()
         }
     }
 }
@@ -125,8 +132,25 @@ fun Exercise() {
         )
         Spacer(modifier = Modifier.weight(1f))
         Row(
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(2.dp)
         ) {
+            Text(
+                "24kg",
+                fontFamily = fontJost,
+                fontSize = 18.sp,
+                color = MaterialTheme.colorScheme.onSurface,
+                modifier = Modifier
+                    .background(MaterialTheme.colorScheme.surfaceContainerHighest, RoundedCornerShape(5.dp))
+                    .padding(3.dp, 0.dp)
+            )
+            Text(
+                "×",
+                fontFamily = fontJost,
+                fontSize = 18.sp,
+                color = MaterialTheme.colorScheme.onSurface,
+                fontWeight = FontWeight.SemiBold
+            )
             Text(
                 "10",
                 fontFamily = fontJost,
@@ -171,7 +195,7 @@ fun AddButton(onClick: () -> Unit, icon: Int, iconDescription: String, modifier:
 }
 
 @Composable
-fun NavigationButton(icon: Int = 0, iconDescription: String, modifier: Modifier = Modifier) {
+fun NavigationButton(icon: Int = 0, iconDescription: String = "", modifier: Modifier = Modifier) {
     Button(
         onClick = {},
         shape = RoundedCornerShape(13.dp),
