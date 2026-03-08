@@ -1,4 +1,4 @@
-package com.jamesfrench.sportnote.database
+package com.jamesfrench.sportnote.data
 
 import androidx.room.Entity
 import androidx.room.ForeignKey

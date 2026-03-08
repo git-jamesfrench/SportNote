@@ -1,11 +1,7 @@
-package com.jamesfrench.sportnote.database
+package com.jamesfrench.sportnote.data
 
-import androidx.room.Embedded
 import androidx.room.Entity
-import androidx.room.ForeignKey
-import androidx.room.Index
 import androidx.room.PrimaryKey
-import androidx.room.Relation
 
 @Entity(tableName = "trainings")
 data class Training(
