@@ -1,9 +1,13 @@
 package com.jamesfrench.sportnote.pages
 
+import android.widget.GridLayout
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
@@ -21,22 +25,17 @@ fun Home(leftPadding: Dp, rightPadding: Dp) {
     val leftContentPadding = max(17.dp - leftPadding, 0.dp)
     val rightContentPadding = max(17.dp - rightPadding, 0.dp)
 
-    Column(
+    LazyVerticalGrid(
         modifier = Modifier
-            .fillMaxSize()
-            .padding(leftContentPadding, 0.dp, rightContentPadding, 0.dp), // Horizontal 17.dp
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.spacedBy(12.dp)
+            .fillMaxSize(),
+            //.verticalScroll(rememberScrollState()),
+        columns = GridCells.Adaptive(minSize = 300.dp),
+        contentPadding = PaddingValues(leftContentPadding, 0.dp, rightContentPadding, 0.dp),
+        verticalArrangement = Arrangement.spacedBy(12.dp),
+        horizontalArrangement = Arrangement.spacedBy(9.dp)
     ) {
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .verticalScroll(rememberScrollState()),
-            verticalArrangement = Arrangement.spacedBy(12.dp)
-        ) {
-            repeat(20) {
-                Training("Hey, world!")
-            }
+        items(20) { index ->
+            Training("Hey, $index!")
         }
     }
 }

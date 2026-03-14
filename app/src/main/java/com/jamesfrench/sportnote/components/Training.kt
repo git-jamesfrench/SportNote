@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 fun Training(title: String) {
     Column(
         modifier = Modifier
-            .fillMaxWidth()
+            .fillMaxWidth(1f)
             .shadow(2.dp, RoundedCornerShape(18.dp))
             .background(MaterialTheme.colorScheme.surface, RoundedCornerShape(18.dp))
             .padding(17.dp, 12.dp),
