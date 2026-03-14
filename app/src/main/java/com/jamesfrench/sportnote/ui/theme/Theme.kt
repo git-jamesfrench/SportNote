@@ -42,6 +42,7 @@ private val LightColorScheme = lightColorScheme(
     */
 )
 
+
 @Composable
 fun SportNoteTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
