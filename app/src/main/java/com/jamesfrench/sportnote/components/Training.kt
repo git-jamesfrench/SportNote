@@ -23,7 +23,10 @@ fun Training(title: String) {
             .padding(17.dp, 12.dp),
         verticalArrangement = Arrangement.spacedBy(5.dp)
     ) {
-        Text(title)
+        Text(
+            title,
+            color = MaterialTheme.colorScheme.onSurface
+        )
         //Exercise()
         //Spacer(
         //    modifier = Modifier
