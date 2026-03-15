@@ -19,6 +19,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.surfaceColorAtElevation
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -29,6 +30,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.max
+import com.jamesfrench.sportnote.shadowColor
 
 @Composable
 fun Navigation(leftPadding: Dp, rightPadding: Dp, content: @Composable RowScope.() -> Unit) {
@@ -66,8 +68,8 @@ fun RowScope.NavigationContainer(content: @Composable RowScope.() -> Unit) {
             .weight(1f, fill = false)
             .widthIn(100.dp, 400.dp)
             .height(75.dp)
-            .shadow(4.dp, RoundedCornerShape(18.dp))
-            .background(MaterialTheme.colorScheme.surface, RoundedCornerShape(18.dp))
+            .shadow(4.dp, RoundedCornerShape(18.dp), ambientColor = shadowColor, spotColor = shadowColor)
+            .background(MaterialTheme.colorScheme.surfaceColorAtElevation(2.dp), RoundedCornerShape(18.dp))
             .padding(5.dp),
         horizontalArrangement = Arrangement.spacedBy(5.dp)
     ) {
@@ -82,9 +84,9 @@ fun RowScope.NavigationButton(onClick: () -> Unit, icon: Int = 0, iconDescriptio
         shape = RoundedCornerShape(13.dp),
         contentPadding = PaddingValues(0.dp),
         colors = ButtonColors(
-            containerColor = MaterialTheme.colorScheme.surface,
+            containerColor = MaterialTheme.colorScheme.surfaceColorAtElevation(2.dp),
             contentColor = MaterialTheme.colorScheme.onSurface,
-            disabledContainerColor = MaterialTheme.colorScheme.surface,
+            disabledContainerColor = MaterialTheme.colorScheme.surfaceColorAtElevation(2.dp),
             disabledContentColor = MaterialTheme.colorScheme.onSurface
         ),
         modifier = Modifier
@@ -111,7 +113,7 @@ fun MainNavigationButton(onClick: () -> Unit, icon: Int, iconDescription: String
         onClick = onClick,
         modifier = modifier
             .size(75.dp)
-            .shadow(4.dp, RoundedCornerShape(18.dp)),
+            .shadow(4.dp, RoundedCornerShape(18.dp), ambientColor = shadowColor, spotColor = shadowColor),
         contentPadding = PaddingValues(0.dp),
         shape = RoundedCornerShape(18.dp),
         elevation = null
