@@ -53,7 +53,12 @@ fun Navigation(leftPadding: Dp, rightPadding: Dp, bottomContentPadding: Dp, cont
                     )
                 )
                 // 17.dp on top for better shadow, bottom padding will be completely applied if there isn't navigation, else, apply 8.dp
-                .padding(leftContentPadding, 17.dp, rightContentPadding, max(17.dp - bottomContentPadding, 8.dp)),
+                .padding(
+                    leftContentPadding,
+                    17.dp,
+                    rightContentPadding,
+                    max(17.dp - bottomContentPadding, 8.dp)
+                ),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.Bottom
         ) {
@@ -69,8 +74,16 @@ fun RowScope.NavigationContainer(content: @Composable RowScope.() -> Unit) {
             .weight(1f, fill = false)
             .widthIn(100.dp, 400.dp)
             .height(75.dp)
-            .shadow(4.dp, RoundedCornerShape(18.dp), ambientColor = shadowColor, spotColor = shadowColor)
-            .background(MaterialTheme.colorScheme.surfaceColorAtElevation(2.dp), RoundedCornerShape(18.dp))
+            .shadow(
+                4.dp,
+                RoundedCornerShape(18.dp),
+                ambientColor = shadowColor,
+                spotColor = shadowColor
+            )
+            .background(
+                MaterialTheme.colorScheme.surfaceColorAtElevation(2.dp),
+                RoundedCornerShape(18.dp)
+            )
             .padding(5.dp),
         horizontalArrangement = Arrangement.spacedBy(5.dp)
     ) {
@@ -79,7 +92,7 @@ fun RowScope.NavigationContainer(content: @Composable RowScope.() -> Unit) {
 }
 
 @Composable
-fun RowScope.NavigationButton(onClick: () -> Unit, icon: Int = 0, iconDescription: String = "") {
+fun RowScope.NavigationButton(onClick: () -> Unit, icon: Int = 0, iconDescription: String = "", content: @Composable () -> Unit = {}) {
     Button(
         onClick = onClick,
         shape = RoundedCornerShape(13.dp),
@@ -105,6 +118,7 @@ fun RowScope.NavigationButton(onClick: () -> Unit, icon: Int = 0, iconDescriptio
                 tint = MaterialTheme.colorScheme.onSurface
             )
         }
+        content()
     }
 }
 
@@ -114,7 +128,12 @@ fun MainNavigationButton(onClick: () -> Unit, icon: Int, iconDescription: String
         onClick = onClick,
         modifier = modifier
             .size(75.dp)
-            .shadow(4.dp, RoundedCornerShape(18.dp), ambientColor = shadowColor, spotColor = shadowColor),
+            .shadow(
+                4.dp,
+                RoundedCornerShape(18.dp),
+                ambientColor = shadowColor,
+                spotColor = shadowColor
+            ),
         contentPadding = PaddingValues(0.dp),
         shape = RoundedCornerShape(18.dp),
         elevation = null

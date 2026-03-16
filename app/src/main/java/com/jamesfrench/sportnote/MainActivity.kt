@@ -16,12 +16,18 @@ import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.jamesfrench.sportnote.components.DropdownMenu
+import com.jamesfrench.sportnote.components.DropdownMenuItem
 import com.jamesfrench.sportnote.components.MainNavigationButton
 import com.jamesfrench.sportnote.components.Navigation
 import com.jamesfrench.sportnote.components.NavigationButton
@@ -63,11 +69,16 @@ fun App(innerPadding: PaddingValues) {
     val leftContentPadding = innerPadding.calculateLeftPadding(layoutDirection)
     val rightContentPadding = innerPadding.calculateRightPadding(layoutDirection)
     val bottomContentPadding = innerPadding.calculateBottomPadding()
+    var expanded by remember { mutableStateOf(false) }
 
     Home(leftContentPadding, rightContentPadding, bottomContentPadding)
     Navigation(leftContentPadding, rightContentPadding, bottomContentPadding) {
         NavigationContainer {
-            NavigationButton({}, R.drawable.menu, stringResource(R.string.menu))
+            NavigationButton({expanded = true}, R.drawable.menu, stringResource(R.string.menu)) {
+                DropdownMenu(expanded, {expanded = false}, (-5).dp) {
+                    DropdownMenuItem(R.string.settings, R.drawable.cog, R.string.settings) {println("Hello, World!")}
+                }
+            }
             NavigationButton({}, R.drawable.chart_no_axes_combined, stringResource(R.string.stats))
             NavigationButton({}, R.drawable.notebook_tabs, stringResource(R.string.exercises))
             NavigationButton({}, R.drawable.search, stringResource(R.string.search))
