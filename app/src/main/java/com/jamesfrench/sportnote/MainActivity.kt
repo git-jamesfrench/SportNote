@@ -2,6 +2,7 @@ package com.jamesfrench.sportnote
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
+import androidx.activity.SystemBarStyle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -17,8 +18,8 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalLayoutDirection
-import androidx.compose.ui.platform.LocalWindowInfo
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.jamesfrench.sportnote.components.MainNavigationButton
@@ -31,10 +32,13 @@ import com.jamesfrench.sportnote.ui.theme.SportNoteTheme
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
+        enableEdgeToEdge(
+            navigationBarStyle = SystemBarStyle.light(
+                scrim = Color.Transparent.toArgb(),
+                darkScrim = Color.Transparent.toArgb(),
+            )
+        )
         setContent {
-
-
             SportNoteTheme {
                 Scaffold(
                     contentWindowInsets = WindowInsets.safeDrawing,
@@ -51,19 +55,17 @@ class MainActivity : ComponentActivity() {
 
 val shadowColor: Color
     @Composable
-    get() = if (isSystemInDarkTheme()) Color(0xBF000000) else Color(0x59000000)
+    get() = if (isSystemInDarkTheme()) Color(0xBF000000) else Color(0x40000000)
 
 @Composable
 fun App(innerPadding: PaddingValues) {
     val layoutDirection = LocalLayoutDirection.current
     val leftContentPadding = innerPadding.calculateLeftPadding(layoutDirection)
     val rightContentPadding = innerPadding.calculateRightPadding(layoutDirection)
-    val windowInfo = LocalWindowInfo.current
-    val width = windowInfo.containerSize.width.dp
-    println(width)
+    val bottomContentPadding = innerPadding.calculateBottomPadding()
 
-    Home(leftContentPadding, rightContentPadding)
-    Navigation(leftContentPadding, rightContentPadding) {
+    Home(leftContentPadding, rightContentPadding, bottomContentPadding)
+    Navigation(leftContentPadding, rightContentPadding, bottomContentPadding) {
         NavigationContainer {
             NavigationButton({}, R.drawable.menu, stringResource(R.string.menu))
             NavigationButton({}, R.drawable.chart_no_axes_combined, stringResource(R.string.stats))

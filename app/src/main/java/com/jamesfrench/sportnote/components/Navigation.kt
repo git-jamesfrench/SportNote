@@ -33,7 +33,7 @@ import androidx.compose.ui.unit.max
 import com.jamesfrench.sportnote.shadowColor
 
 @Composable
-fun Navigation(leftPadding: Dp, rightPadding: Dp, content: @Composable RowScope.() -> Unit) {
+fun Navigation(leftPadding: Dp, rightPadding: Dp, bottomContentPadding: Dp, content: @Composable RowScope.() -> Unit) {
     val leftContentPadding = max(17.dp - leftPadding, 0.dp)
     val rightContentPadding = max(17.dp - rightPadding, 0.dp)
 
@@ -52,7 +52,8 @@ fun Navigation(leftPadding: Dp, rightPadding: Dp, content: @Composable RowScope.
                         )
                     )
                 )
-                .padding(leftContentPadding, 17.dp, rightContentPadding, 8.dp), // 17.dp on top for better shadow, 8.dp on bottom for better look. Total height: 100.dp
+                // 17.dp on top for better shadow, bottom padding will be completely applied if there isn't navigation, else, apply 8.dp
+                .padding(leftContentPadding, 17.dp, rightContentPadding, max(17.dp - bottomContentPadding, 8.dp)),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.Bottom
         ) {

@@ -1,6 +1,7 @@
 package com.jamesfrench.sportnote.components
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -26,6 +27,7 @@ fun Training(title: String) {
             .fillMaxWidth(1f)
             .shadow(2.dp, RoundedCornerShape(18.dp), ambientColor = shadowColor, spotColor = shadowColor)
             .background(MaterialTheme.colorScheme.surfaceColorAtElevation(1.dp), RoundedCornerShape(18.dp))
+            .clickable(true, onClick = {})
             .padding(17.dp, 12.dp),
         verticalArrangement = Arrangement.spacedBy(5.dp)
     ) {

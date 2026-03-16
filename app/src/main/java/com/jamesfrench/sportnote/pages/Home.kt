@@ -16,7 +16,7 @@ import com.jamesfrench.sportnote.components.Training
 import com.jamesfrench.sportnote.ui.theme.SportNoteTheme
 
 @Composable
-fun Home(leftPadding: Dp, rightPadding: Dp) {
+fun Home(leftPadding: Dp, rightPadding: Dp, bottomContentPadding: Dp) {
     val leftContentPadding = max(17.dp - leftPadding, 0.dp)
     val rightContentPadding = max(17.dp - rightPadding, 0.dp)
 
@@ -24,9 +24,9 @@ fun Home(leftPadding: Dp, rightPadding: Dp) {
         modifier = Modifier
             .fillMaxSize(),
         columns = GridCells.Adaptive(minSize = 300.dp),
-        contentPadding = PaddingValues(leftContentPadding, 0.dp, rightContentPadding, 100.dp),
+        contentPadding = PaddingValues(leftContentPadding, 0.dp, rightContentPadding, (92.dp + max(17.dp - bottomContentPadding, 8.dp))),
         verticalArrangement = Arrangement.spacedBy(12.dp),
-        horizontalArrangement = Arrangement.spacedBy(9.dp)
+        horizontalArrangement = Arrangement.spacedBy(12.dp)
     ) {
         items(20) { index ->
             Training("Hey, $index!")
