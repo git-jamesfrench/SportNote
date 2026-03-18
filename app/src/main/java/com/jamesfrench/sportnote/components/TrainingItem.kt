@@ -19,7 +19,7 @@ import com.jamesfrench.sportnote.App
 import com.jamesfrench.sportnote.ui.theme.SportNoteTheme
 
 @Composable
-fun Training(title: String) {
+fun TrainingItem(title: String?) {
     Column(
         modifier = Modifier
             .fillMaxWidth(1f)
@@ -28,10 +28,12 @@ fun Training(title: String) {
             .padding(17.dp, 12.dp),
         verticalArrangement = Arrangement.spacedBy(5.dp)
     ) {
-        Text(
-            title,
-            color = MaterialTheme.colorScheme.onSurface
-        )
+        if (title != null) {
+            Text(
+                title,
+                color = MaterialTheme.colorScheme.onSurface
+            )
+        }
         //Exercise()
         //Spacer(
         //    modifier = Modifier

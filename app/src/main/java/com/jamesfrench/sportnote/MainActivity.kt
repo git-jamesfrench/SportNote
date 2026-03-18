@@ -31,12 +31,14 @@ import com.jamesfrench.sportnote.components.MainNavigationButton
 import com.jamesfrench.sportnote.components.Navigation
 import com.jamesfrench.sportnote.components.NavigationButton
 import com.jamesfrench.sportnote.components.NavigationContainer
+import com.jamesfrench.sportnote.database.ObjectBox
 import com.jamesfrench.sportnote.pages.Home
 import com.jamesfrench.sportnote.ui.theme.SportNoteTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        ObjectBox.init(this)
         enableEdgeToEdge(
             navigationBarStyle = SystemBarStyle.light(
                 scrim = Color.Transparent.toArgb(),
@@ -59,14 +61,14 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun App(innerPadding: PaddingValues) {
+fun App(innerPadding: PaddingValues, viewModel: MainViewModel = MainViewModel()) {
     val layoutDirection = LocalLayoutDirection.current
     val leftContentPadding = innerPadding.calculateLeftPadding(layoutDirection)
     val rightContentPadding = innerPadding.calculateRightPadding(layoutDirection)
     val bottomContentPadding = innerPadding.calculateBottomPadding()
     var expanded by remember { mutableStateOf(false) }
 
-    Home(leftContentPadding, rightContentPadding, bottomContentPadding)
+    Home(leftContentPadding, rightContentPadding, bottomContentPadding, viewModel = viewModel)
     Navigation(leftContentPadding, rightContentPadding, bottomContentPadding) {
         NavigationContainer {
             NavigationButton({expanded = true}, R.drawable.menu, stringResource(R.string.menu)) {
@@ -79,6 +81,6 @@ fun App(innerPadding: PaddingValues) {
             NavigationButton({}, R.drawable.search, stringResource(R.string.search))
         }
         Spacer(Modifier.width(17.dp))
-        MainNavigationButton({}, R.drawable.diamond_plus, stringResource(R.string.new_training))
+        MainNavigationButton({viewModel.addTraining()}, R.drawable.diamond_plus, stringResource(R.string.new_training))
     }
 }
