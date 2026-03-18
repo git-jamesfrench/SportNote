@@ -31,7 +31,7 @@ fun Home(leftPadding: Dp, rightPadding: Dp, bottomContentPadding: Dp, viewModel:
         horizontalArrangement = Arrangement.spacedBy(12.dp)
     ) {
         items(viewModel.trainings) { training ->
-            TrainingItem(title = training.name)
+            TrainingItem(title = training.name) { viewModel.delTraining(training.id) }
         }
     }
 }

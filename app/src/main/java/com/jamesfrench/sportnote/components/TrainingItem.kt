@@ -13,18 +13,20 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.surfaceColorAtElevation
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.jamesfrench.sportnote.App
 import com.jamesfrench.sportnote.ui.theme.SportNoteTheme
 
 @Composable
-fun TrainingItem(title: String?) {
+fun TrainingItem(title: String?, onClick: () -> Unit) {
     Column(
         modifier = Modifier
             .fillMaxWidth(1f)
             .background(MaterialTheme.colorScheme.surfaceColorAtElevation(1.dp), RoundedCornerShape(18.dp))
-            .clickable(true, onClick = {})
+            .clip(RoundedCornerShape(18.dp))
+            .clickable(true, onClick = onClick)
             .padding(17.dp, 12.dp),
         verticalArrangement = Arrangement.spacedBy(5.dp)
     ) {

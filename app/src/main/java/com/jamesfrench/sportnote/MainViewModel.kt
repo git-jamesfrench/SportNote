@@ -1,10 +1,9 @@
 package com.jamesfrench.sportnote
 
 import androidx.compose.runtime.mutableStateListOf
-import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.lifecycle.ViewModel
-import com.jamesfrench.sportnote.database.Training
 import com.jamesfrench.sportnote.database.ObjectBox.store
+import com.jamesfrench.sportnote.database.Training
 
 class MainViewModel: ViewModel() {
     private val trainingBox = store.boxFor(Training::class.java)
@@ -26,5 +25,10 @@ class MainViewModel: ViewModel() {
     fun updateTrainings() {
         trainings.clear()
         trainings.addAll(trainingBox.all)
+    }
+
+    fun delTraining(id: Long) {
+        trainingBox.remove(id)
+        updateTrainings()
     }
 }
