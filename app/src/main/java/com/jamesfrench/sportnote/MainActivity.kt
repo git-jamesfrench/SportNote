@@ -23,7 +23,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalLayoutDirection
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.dp
 import com.jamesfrench.sportnote.components.DropdownMenu
 import com.jamesfrench.sportnote.components.DropdownMenuItem
@@ -72,8 +74,8 @@ fun App(innerPadding: PaddingValues, viewModel: MainViewModel = MainViewModel())
     Navigation(leftContentPadding, rightContentPadding, bottomContentPadding) {
         NavigationContainer {
             NavigationButton({expanded = true}, R.drawable.menu, stringResource(R.string.menu)) {
-                DropdownMenu(expanded, {expanded = false}, (-5).dp) {
-                    DropdownMenuItem(R.string.settings, R.drawable.cog, R.string.settings) {println("Hello, World!")}
+                DropdownMenu(expanded, {expanded = false}, DpOffset((-5).dp, 0.dp)) {
+                    DropdownMenuItem(stringResource(R.string.settings), painterResource(R.drawable.cog), stringResource(R.string.settings)) {println("Hello, World!")}
                 }
             }
             NavigationButton({}, R.drawable.chart_no_axes_combined, stringResource(R.string.stats))

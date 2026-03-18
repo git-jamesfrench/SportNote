@@ -7,5 +7,5 @@ import io.objectbox.annotation.Id
 data class Training(
     @Id
     var id: Long = 0,
-    var name: String? = ""
+    var name: String = ""
 )
