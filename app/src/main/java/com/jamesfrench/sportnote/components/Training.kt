@@ -13,11 +13,9 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.surfaceColorAtElevation
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.jamesfrench.sportnote.App
-import com.jamesfrench.sportnote.shadowColor
 import com.jamesfrench.sportnote.ui.theme.SportNoteTheme
 
 @Composable
@@ -25,7 +23,6 @@ fun Training(title: String) {
     Column(
         modifier = Modifier
             .fillMaxWidth(1f)
-            .shadow(2.dp, RoundedCornerShape(18.dp), ambientColor = shadowColor, spotColor = shadowColor)
             .background(MaterialTheme.colorScheme.surfaceColorAtElevation(1.dp), RoundedCornerShape(18.dp))
             .clickable(true, onClick = {})
             .padding(17.dp, 12.dp),

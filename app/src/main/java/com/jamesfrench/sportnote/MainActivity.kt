@@ -5,7 +5,6 @@ import androidx.activity.ComponentActivity
 import androidx.activity.SystemBarStyle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
@@ -58,10 +57,6 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
-
-val shadowColor: Color
-    @Composable
-    get() = if (isSystemInDarkTheme()) Color(0xBF000000) else Color(0x40000000)
 
 @Composable
 fun App(innerPadding: PaddingValues) {

@@ -22,7 +22,8 @@ fun DropdownMenu(expanded: Boolean, onDismissRequest: () -> Unit, xOffset: Dp = 
         onDismissRequest = onDismissRequest,
         shape = RoundedCornerShape(18.dp),
         containerColor = MaterialTheme.colorScheme.surfaceColorAtElevation(5.dp),
-        offset = DpOffset(xOffset, 17.dp)
+        offset = DpOffset(xOffset, 17.dp),
+        shadowElevation = 2.dp
     ) {
         content()
     }

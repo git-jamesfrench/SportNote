@@ -23,14 +23,12 @@ import androidx.compose.material3.surfaceColorAtElevation
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color.Companion.Transparent
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.max
-import com.jamesfrench.sportnote.shadowColor
 
 @Composable
 fun Navigation(leftPadding: Dp, rightPadding: Dp, bottomContentPadding: Dp, content: @Composable RowScope.() -> Unit) {
@@ -72,14 +70,8 @@ fun RowScope.NavigationContainer(content: @Composable RowScope.() -> Unit) {
     Row(
         modifier = Modifier
             .weight(1f, fill = false)
-            .widthIn(100.dp, 400.dp)
+            .widthIn(100.dp, 350.dp)
             .height(75.dp)
-            .shadow(
-                4.dp,
-                RoundedCornerShape(18.dp),
-                ambientColor = shadowColor,
-                spotColor = shadowColor
-            )
             .background(
                 MaterialTheme.colorScheme.surfaceColorAtElevation(2.dp),
                 RoundedCornerShape(18.dp)
@@ -127,13 +119,7 @@ fun MainNavigationButton(onClick: () -> Unit, icon: Int, iconDescription: String
     Button(
         onClick = onClick,
         modifier = modifier
-            .size(75.dp)
-            .shadow(
-                4.dp,
-                RoundedCornerShape(18.dp),
-                ambientColor = shadowColor,
-                spotColor = shadowColor
-            ),
+            .size(75.dp),
         contentPadding = PaddingValues(0.dp),
         shape = RoundedCornerShape(18.dp),
         elevation = null
