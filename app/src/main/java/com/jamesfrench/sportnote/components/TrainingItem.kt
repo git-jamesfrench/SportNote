@@ -105,15 +105,6 @@ fun TrainingItem(training: Training, viewModel: MainViewModel) {
                 training.name,
                 color = MaterialTheme.colorScheme.onSurface
             )
-            Text(
-                training.name,
-                color = MaterialTheme.colorScheme.onSurface
-            )
-            Text(
-                training.name,
-                color = MaterialTheme.colorScheme.onSurface
-            )
-
         }
 
         //Exercise()

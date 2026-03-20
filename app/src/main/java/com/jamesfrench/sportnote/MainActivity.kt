@@ -68,21 +68,6 @@ fun App(innerPadding: PaddingValues, viewModel: MainViewModel = MainViewModel())
     val leftContentPadding = innerPadding.calculateLeftPadding(layoutDirection)
     val rightContentPadding = innerPadding.calculateRightPadding(layoutDirection)
     val bottomContentPadding = innerPadding.calculateBottomPadding()
-    var expanded by remember { mutableStateOf(false) }
 
     Home(leftContentPadding, rightContentPadding, bottomContentPadding, viewModel = viewModel)
-    Navigation(leftContentPadding, rightContentPadding, bottomContentPadding) {
-        NavigationContainer {
-            NavigationButton({expanded = true}, R.drawable.menu, stringResource(R.string.menu)) {
-                DropdownMenu(expanded, {expanded = false}, DpOffset((-5).dp, 0.dp)) {
-                    DropdownMenuItem(stringResource(R.string.settings), painterResource(R.drawable.cog), stringResource(R.string.settings)) {println("Hello, World!")}
-                }
-            }
-            NavigationButton({}, R.drawable.chart_no_axes_combined, stringResource(R.string.stats))
-            NavigationButton({}, R.drawable.notebook_tabs, stringResource(R.string.exercises))
-            NavigationButton({}, R.drawable.search, stringResource(R.string.search))
-        }
-        Spacer(Modifier.width(17.dp))
-        MainNavigationButton({viewModel.addTraining()}, R.drawable.diamond_plus, stringResource(R.string.new_training))
-    }
 }
