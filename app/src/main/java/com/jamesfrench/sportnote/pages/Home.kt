@@ -55,12 +55,12 @@ fun Home(leftPadding: Dp, rightPadding: Dp, bottomContentPadding: Dp, viewModel:
         NavigationContainer {
             NavigationButton({expanded = true}, R.drawable.menu, stringResource(R.string.menu)) {
                 DropdownMenu(expanded, {expanded = false}, DpOffset((-5).dp, 0.dp)) {
-                    DropdownMenuItem(stringResource(R.string.settings), painterResource(R.drawable.cog), stringResource(R.string.settings)) {println("Hello, World!")}
+                    DropdownMenuItem(stringResource(R.string.settings), painterResource(R.drawable.cog), stringResource(R.string.settings), false) {println("Hello, World!")}
                 }
             }
-            NavigationButton({}, R.drawable.chart_no_axes_combined, stringResource(R.string.stats))
-            NavigationButton({}, R.drawable.notebook_tabs, stringResource(R.string.exercises))
-            NavigationButton({}, R.drawable.search, stringResource(R.string.search))
+            NavigationButton({}, R.drawable.chart_no_axes_combined, stringResource(R.string.stats), false)
+            NavigationButton({}, R.drawable.notebook_tabs, stringResource(R.string.exercises), false)
+            NavigationButton({}, R.drawable.search, stringResource(R.string.search), false)
         }
         Spacer(Modifier.width(17.dp))
         MainNavigationButton({viewModel.addTraining()}, R.drawable.diamond_plus, stringResource(R.string.new_training))

@@ -6,6 +6,7 @@ import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.MenuItemColors
 import androidx.compose.material3.Text
 import androidx.compose.material3.surfaceColorAtElevation
 import androidx.compose.runtime.Composable
@@ -28,17 +29,25 @@ fun DropdownMenu(expanded: Boolean, onDismissRequest: () -> Unit, offset: DpOffs
 }
 
 @Composable
-fun DropdownMenuItem(text: String, icon: Painter, iconDescription: String, onClick: () -> Unit) {
+fun DropdownMenuItem(text: String, icon: Painter, iconDescription: String, enabled: Boolean = true, onClick: () -> Unit) {
     DropdownMenuItem(
         text = { Text(text) },
+        colors = MenuItemColors(
+            textColor = MaterialTheme.colorScheme.onSurface,
+            leadingIconColor = MaterialTheme.colorScheme.onSurface,
+            trailingIconColor = MaterialTheme.colorScheme.onSurface,
+            disabledTextColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f),
+            disabledLeadingIconColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f),
+            disabledTrailingIconColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f)
+        ),
         leadingIcon = {
             Icon(
                 icon,
                 contentDescription = iconDescription,
-                tint = MaterialTheme.colorScheme.onSurface
             )
         },
         contentPadding = PaddingValues(16.dp, 0.dp),
-        onClick = onClick
+        onClick = onClick,
+        enabled = enabled
     )
 }

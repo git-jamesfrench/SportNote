@@ -84,7 +84,7 @@ fun RowScope.NavigationContainer(content: @Composable RowScope.() -> Unit) {
 }
 
 @Composable
-fun RowScope.NavigationButton(onClick: () -> Unit, icon: Int = 0, iconDescription: String = "", content: @Composable () -> Unit = {}) {
+fun RowScope.NavigationButton(onClick: () -> Unit, icon: Int = 0, iconDescription: String = "", enabled: Boolean = true, content: @Composable () -> Unit = {}) {
     Button(
         onClick = onClick,
         shape = RoundedCornerShape(13.dp),
@@ -93,8 +93,9 @@ fun RowScope.NavigationButton(onClick: () -> Unit, icon: Int = 0, iconDescriptio
             containerColor = MaterialTheme.colorScheme.surfaceColorAtElevation(2.dp),
             contentColor = MaterialTheme.colorScheme.onSurface,
             disabledContainerColor = MaterialTheme.colorScheme.surfaceColorAtElevation(2.dp),
-            disabledContentColor = MaterialTheme.colorScheme.onSurface
+            disabledContentColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f)
         ),
+        enabled = enabled,
         modifier = Modifier
             .weight(1f)
             .fillMaxHeight()
@@ -106,8 +107,7 @@ fun RowScope.NavigationButton(onClick: () -> Unit, icon: Int = 0, iconDescriptio
             Icon(
                 painterResource(icon),
                 contentDescription = iconDescription,
-                modifier = Modifier.size(23.dp),
-                tint = MaterialTheme.colorScheme.onSurface
+                modifier = Modifier.size(23.dp)
             )
         }
         content()
