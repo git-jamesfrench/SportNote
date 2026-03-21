@@ -1,0 +1,22 @@
+package com.jamesfrench.sportnote.pages
+
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.width
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import com.jamesfrench.sportnote.MainViewModel
+import com.jamesfrench.sportnote.R
+import com.jamesfrench.sportnote.components.MainNavigationButton
+import com.jamesfrench.sportnote.components.Navigation
+
+@Composable
+fun TrainingEdit(leftPadding: Dp, rightPadding: Dp, bottomContentPadding: Dp, viewModel: MainViewModel) {
+    Navigation(leftPadding, rightPadding, bottomContentPadding) {
+        Spacer(Modifier.width(17.dp))
+        MainNavigationButton({}, R.drawable.plus, stringResource(R.string.add_exercise))
+    }
+}

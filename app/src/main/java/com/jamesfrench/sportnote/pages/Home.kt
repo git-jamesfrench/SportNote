@@ -21,6 +21,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.max
+import androidx.navigation.NavController
 import com.jamesfrench.sportnote.App
 import com.jamesfrench.sportnote.MainViewModel
 import com.jamesfrench.sportnote.R
@@ -34,7 +35,7 @@ import com.jamesfrench.sportnote.components.TrainingItem
 import com.jamesfrench.sportnote.ui.theme.SportNoteTheme
 
 @Composable
-fun Home(leftPadding: Dp, rightPadding: Dp, bottomContentPadding: Dp, viewModel: MainViewModel) {
+fun Home(leftPadding: Dp, rightPadding: Dp, bottomContentPadding: Dp, viewModel: MainViewModel, navController: NavController) {
     val leftContentPadding = max(17.dp - leftPadding, 0.dp)
     val rightContentPadding = max(17.dp - rightPadding, 0.dp)
     var expanded by remember { mutableStateOf(false) }
@@ -63,7 +64,10 @@ fun Home(leftPadding: Dp, rightPadding: Dp, bottomContentPadding: Dp, viewModel:
             NavigationButton({}, R.drawable.search, stringResource(R.string.search), false)
         }
         Spacer(Modifier.width(17.dp))
-        MainNavigationButton({viewModel.addTraining()}, R.drawable.diamond_plus, stringResource(R.string.new_training))
+        MainNavigationButton({
+            navController.navigate("exercise_edit")
+            viewModel.addTraining()
+        }, R.drawable.diamond_plus, stringResource(R.string.new_training))
     }
 }
 

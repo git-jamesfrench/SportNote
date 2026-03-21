@@ -2,14 +2,11 @@ package com.jamesfrench.sportnote.database
 
 import io.objectbox.annotation.Entity
 import io.objectbox.annotation.Id
-import io.objectbox.relation.ToMany
 
 @Entity
-data class Training(
+data class Exercise(
     @Id
     var id: Long = 0,
-    var name: String = ""
-
-) {
-    lateinit var exercises: ToMany<Exercise>
-}
+    var exerciseType: Long = 0,
+    var weight: Int = 0
+)

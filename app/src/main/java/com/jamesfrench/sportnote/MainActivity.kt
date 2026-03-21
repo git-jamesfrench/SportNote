@@ -17,8 +17,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalLayoutDirection
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.jamesfrench.sportnote.database.Exercise
 import com.jamesfrench.sportnote.database.ObjectBox
 import com.jamesfrench.sportnote.pages.Home
+import com.jamesfrench.sportnote.pages.TrainingEdit
 import com.jamesfrench.sportnote.ui.theme.SportNoteTheme
 
 class MainActivity : ComponentActivity() {
@@ -48,10 +53,18 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun App(innerPadding: PaddingValues, viewModel: MainViewModel = MainViewModel()) {
+    val navController = rememberNavController()
     val layoutDirection = LocalLayoutDirection.current
     val leftContentPadding = innerPadding.calculateLeftPadding(layoutDirection)
     val rightContentPadding = innerPadding.calculateRightPadding(layoutDirection)
     val bottomContentPadding = innerPadding.calculateBottomPadding()
 
-    Home(leftContentPadding, rightContentPadding, bottomContentPadding, viewModel = viewModel)
+    NavHost(navController, "home") {
+        composable("home") {
+            Home(leftContentPadding, rightContentPadding, bottomContentPadding, viewModel = viewModel, navController = navController)
+        }
+        composable("exercise_edit") {
+            TrainingEdit(leftContentPadding, rightContentPadding, bottomContentPadding, viewModel = viewModel)
+        }
+    }
 }
