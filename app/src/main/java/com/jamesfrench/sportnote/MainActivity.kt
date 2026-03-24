@@ -29,7 +29,6 @@ import com.jamesfrench.sportnote.ui.theme.SportNoteTheme
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        ObjectBox.init(this)
         enableEdgeToEdge(
             navigationBarStyle = SystemBarStyle.light(
                 scrim = Color.Transparent.toArgb(),

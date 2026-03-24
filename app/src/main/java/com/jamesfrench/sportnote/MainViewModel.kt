@@ -22,11 +22,11 @@ class MainViewModel: ViewModel() {
     }
 
     fun addTraining() {
-        if (selectedTraining.id.toInt() != -1) {
-            val returnedTraining = trainingBox.put(
+        if (selectedTraining.id != -1L) {
+            val newTrainingID = trainingBox.put(
                 Training(name = "Hello, World!")
             )
-            println(returnedTraining.)
+            selectedTraining = trainingBox.get(newTrainingID)
             updateTrainings()
         }
     }

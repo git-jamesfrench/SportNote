@@ -16,6 +16,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.ripple
 import androidx.compose.material3.surfaceColorAtElevation
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -46,6 +47,12 @@ fun TrainingItem(training: Training, viewModel: MainViewModel) {
     var expanded by remember { mutableStateOf(false) }
     var offset by remember { mutableStateOf(Offset.Zero) }
     val interactionSource = remember { MutableInteractionSource() }
+
+    DisposableEffect(Unit) {
+        onDispose {
+            viewModel.selectedTraining = Training(id = -1)
+        }
+    }
 
     Box(
         modifier = Modifier
