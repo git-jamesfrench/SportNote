@@ -34,6 +34,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.jamesfrench.sportnote.App
 import com.jamesfrench.sportnote.MainViewModel
 import com.jamesfrench.sportnote.R
@@ -41,7 +42,7 @@ import com.jamesfrench.sportnote.database.Training
 import com.jamesfrench.sportnote.ui.theme.SportNoteTheme
 
 @Composable
-fun TrainingItem(training: Training, viewModel: MainViewModel) {
+fun TrainingItem(training: Training, viewModel: MainViewModel, navController: NavController) {
     val density = LocalDensity.current
     val haptics = LocalHapticFeedback.current
     var expanded by remember { mutableStateOf(false) }
@@ -78,6 +79,10 @@ fun TrainingItem(training: Training, viewModel: MainViewModel) {
                                 PressInteraction.Cancel(press)
                             }
                         )
+                    },
+                    onTap = {
+                        viewModel.selectedTraining = training
+                        navController.navigate("exercise_edit")
                     },
                     onLongPress = { clickOffset ->
                         haptics.performHapticFeedback(HapticFeedbackType.LongPress)

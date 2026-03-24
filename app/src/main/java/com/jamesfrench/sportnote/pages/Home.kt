@@ -49,7 +49,7 @@ fun Home(leftPadding: Dp, rightPadding: Dp, bottomContentPadding: Dp, viewModel:
         horizontalArrangement = Arrangement.spacedBy(12.dp)
     ) {
         items(viewModel.trainings) { training ->
-            TrainingItem(training, viewModel)
+            TrainingItem(training, viewModel, navController)
         }
     }
     Navigation(leftPadding, rightPadding, bottomContentPadding) {
@@ -65,8 +65,9 @@ fun Home(leftPadding: Dp, rightPadding: Dp, bottomContentPadding: Dp, viewModel:
         }
         Spacer(Modifier.width(17.dp))
         MainNavigationButton({
-            navController.navigate("exercise_edit")
-            viewModel.addTraining()
+            if (viewModel.addTraining()) {
+                navController.navigate("exercise_edit")
+            }
         }, R.drawable.diamond_plus, stringResource(R.string.new_training))
     }
 }

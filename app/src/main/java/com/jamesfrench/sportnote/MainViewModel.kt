@@ -1,6 +1,5 @@
 package com.jamesfrench.sportnote
 
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
@@ -21,14 +20,20 @@ class MainViewModel: ViewModel() {
         trainings.addAll(trainingBox.all)
     }
 
-    fun addTraining() {
-        if (selectedTraining.id != -1L) {
+    fun addTraining(): Boolean {
+        if (selectedTraining.id == -1L) {
             val newTrainingID = trainingBox.put(
                 Training(name = "Hello, World!")
             )
             selectedTraining = trainingBox.get(newTrainingID)
             updateTrainings()
+            return true
         }
+        return false
+    }
+
+    fun resetCurrentTraining() {
+        selectedTraining = Training(id = -1)
     }
 
     fun updateTrainings() {

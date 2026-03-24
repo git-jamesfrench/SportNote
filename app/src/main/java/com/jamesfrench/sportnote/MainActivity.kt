@@ -5,6 +5,13 @@ import androidx.activity.ComponentActivity
 import androidx.activity.SystemBarStyle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.animation.AnimatedContentTransitionScope
+import androidx.compose.animation.EnterTransition
+import androidx.compose.animation.ExitTransition
+import androidx.compose.animation.core.EaseInOut
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.WindowInsets
@@ -20,8 +27,6 @@ import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.jamesfrench.sportnote.database.Exercise
-import com.jamesfrench.sportnote.database.ObjectBox
 import com.jamesfrench.sportnote.pages.Home
 import com.jamesfrench.sportnote.pages.TrainingEdit
 import com.jamesfrench.sportnote.ui.theme.SportNoteTheme
@@ -59,11 +64,35 @@ fun App(innerPadding: PaddingValues, viewModel: MainViewModel = MainViewModel())
     val bottomContentPadding = innerPadding.calculateBottomPadding()
 
     NavHost(navController, "home") {
-        composable("home") {
+        composable(
+            "home",
+            enterTransition = { EnterTransition.None },
+            exitTransition =  { ExitTransition.KeepUntilTransitionsFinished },
+            popEnterTransition =  { EnterTransition.None },
+            popExitTransition = { ExitTransition.KeepUntilTransitionsFinished },
+        ) {
             Home(leftContentPadding, rightContentPadding, bottomContentPadding, viewModel = viewModel, navController = navController)
         }
-        composable("exercise_edit") {
-            TrainingEdit(leftContentPadding, rightContentPadding, bottomContentPadding, viewModel = viewModel)
+        composable(
+            "exercise_edit",
+            enterTransition = { slideIntoContainer(
+                AnimatedContentTransitionScope.SlideDirection.Left,
+                animationSpec = tween(300, easing = EaseInOut)
+            ) },
+            exitTransition =  { slideOutOfContainer(
+                AnimatedContentTransitionScope.SlideDirection.Right,
+                animationSpec = tween(300, easing = EaseInOut)
+            ) },
+            popEnterTransition =  { slideIntoContainer(
+                AnimatedContentTransitionScope.SlideDirection.Left,
+                animationSpec = tween(300, easing = EaseInOut)
+            ) },
+            popExitTransition = { slideOutOfContainer(
+                AnimatedContentTransitionScope.SlideDirection.Right,
+                animationSpec = tween(300, easing = EaseInOut)
+            ) },
+        ) {
+            TrainingEdit(leftContentPadding, rightContentPadding, bottomContentPadding, viewModel = viewModel, navController = navController)
         }
     }
 }
