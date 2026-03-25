@@ -42,7 +42,7 @@ import com.jamesfrench.sportnote.database.Training
 import com.jamesfrench.sportnote.ui.theme.SportNoteTheme
 
 @Composable
-fun TrainingItem(training: Training, viewModel: MainViewModel, navController: NavController) {
+fun TrainingItem(training: Training, onDelete: (training: Training) -> Unit, viewModel: MainViewModel, navController: NavController) {
     val density = LocalDensity.current
     val haptics = LocalHapticFeedback.current
     var expanded by remember { mutableStateOf(false) }
@@ -104,7 +104,7 @@ fun TrainingItem(training: Training, viewModel: MainViewModel, navController: Na
                     icon = painterResource(R.drawable.trash),
                     iconDescription = stringResource(R.string.delete_training),
                     onClick = {
-                        viewModel.delTraining(training.id)
+                        onDelete(training)
                         expanded = false
                     }
                 )

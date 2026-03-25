@@ -31,7 +31,10 @@ import com.jamesfrench.sportnote.components.MainNavigationButton
 import com.jamesfrench.sportnote.components.Navigation
 import com.jamesfrench.sportnote.components.NavigationButton
 import com.jamesfrench.sportnote.components.NavigationContainer
+import com.jamesfrench.sportnote.components.Popup
+import com.jamesfrench.sportnote.components.PopupButton
 import com.jamesfrench.sportnote.components.TrainingItem
+import com.jamesfrench.sportnote.database.Training
 import com.jamesfrench.sportnote.ui.theme.SportNoteTheme
 
 @Composable
@@ -39,6 +42,9 @@ fun Home(leftPadding: Dp, rightPadding: Dp, bottomContentPadding: Dp, viewModel:
     val leftContentPadding = max(17.dp - leftPadding, 0.dp)
     val rightContentPadding = max(17.dp - rightPadding, 0.dp)
     var expanded by remember { mutableStateOf(false) }
+
+    var trainingToDelete by remember { mutableStateOf(Training()) }
+    var trainingDeleteDialog by remember { mutableStateOf(false) }
 
     LazyVerticalGrid(
         modifier = Modifier
@@ -49,7 +55,26 @@ fun Home(leftPadding: Dp, rightPadding: Dp, bottomContentPadding: Dp, viewModel:
         horizontalArrangement = Arrangement.spacedBy(12.dp)
     ) {
         items(viewModel.trainings) { training ->
-            TrainingItem(training, viewModel, navController)
+            TrainingItem(training, { training ->
+                trainingToDelete = training
+                trainingDeleteDialog = true
+            }, viewModel, navController)
+        }
+    }
+    Popup(
+        painterResource(R.drawable.trash),
+        stringResource(R.string.delete_training),
+        stringResource(R.string.delete_training_popup_title),
+        stringResource(R.string.delete_training_popup_description),
+        trainingDeleteDialog,
+        {trainingDeleteDialog = false}
+    ) {
+        PopupButton("Confirmer") {
+            viewModel.delTraining(trainingToDelete.id)
+            trainingDeleteDialog = false
+        }
+        PopupButton("Annuler") {
+            trainingDeleteDialog = false
         }
     }
     Navigation(leftPadding, rightPadding, bottomContentPadding) {

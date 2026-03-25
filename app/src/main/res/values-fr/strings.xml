@@ -9,4 +9,7 @@
     <string name="recent">Récents</string>
     <string name="settings">Paramètres</string>
     <string name="delete_training">Supprimer</string>
+    <string name="add_exercise">Ajouter exercice</string>
+    <string name="delete_training_popup_title">Supprimer ?</string>
+    <string name="delete_training_popup_description">La suppression est permanente, êtes-vous sûre de vouloir supprimer cet entraînement ?</string>
 </resources>
