@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="splash_background">#121318</color>
-    <drawable name="splash_icon">@drawable/splashscreen_night</drawable>
+    <drawable name="splash_icon">@drawable/splashscreen</drawable>
 </resources>
