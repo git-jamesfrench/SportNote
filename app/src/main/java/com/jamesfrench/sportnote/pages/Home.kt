@@ -2,17 +2,22 @@ package com.jamesfrench.sportnote.pages
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Snackbar
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
+import androidx.compose.material3.Text
 import androidx.compose.material3.surfaceColorAtElevation
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -20,14 +25,17 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.max
+import androidx.compose.ui.unit.sp
 import androidx.compose.ui.zIndex
 import androidx.navigation.NavController
 import com.jamesfrench.sportnote.App
@@ -44,6 +52,7 @@ import com.jamesfrench.sportnote.components.PopupButton
 import com.jamesfrench.sportnote.components.TrainingItem
 import com.jamesfrench.sportnote.database.Training
 import com.jamesfrench.sportnote.ui.theme.SportNoteTheme
+import com.jamesfrench.sportnote.ui.theme.fontJost
 import kotlinx.coroutines.launch
 
 @Composable
@@ -71,7 +80,6 @@ fun Home(leftPadding: Dp, rightPadding: Dp, bottomContentPadding: Dp, viewModel:
             modifier = Modifier.padding(0.dp)
         )
     }
-
     LazyVerticalGrid(
         modifier = Modifier
             .fillMaxSize(),
@@ -80,6 +88,30 @@ fun Home(leftPadding: Dp, rightPadding: Dp, bottomContentPadding: Dp, viewModel:
         verticalArrangement = Arrangement.spacedBy(12.dp),
         horizontalArrangement = Arrangement.spacedBy(12.dp)
     ) {
+        item(span = { GridItemSpan(maxCurrentLineSpan) }) {
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                modifier = Modifier.padding(0.dp, 8.dp)
+            ) {
+                Icon(
+                    painterResource(R.drawable.notebook_dumbbell),
+                    stringResource(R.string.app_name),
+                    tint = MaterialTheme.colorScheme.primary,
+                    modifier = Modifier.size(32.dp)
+                )
+                Text(
+                    stringResource(R.string.app_name),
+                    fontFamily = fontJost,
+                    fontSize = 20.sp,
+                    fontWeight = FontWeight.SemiBold
+                )
+                Spacer(Modifier.weight(1f))
+                Text(
+                    stringResource(R.string.recent),
+                )
+            }
+        }
         items(viewModel.trainings) { training ->
             TrainingItem(training, { training ->
                 trainingToDelete.value = training
