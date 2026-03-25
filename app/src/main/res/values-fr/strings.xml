@@ -13,4 +13,5 @@
     <string name="delete_training_popup_title">Supprimer ?</string>
     <string name="delete_training_popup_description">La suppression est permanente, êtes-vous sûre de vouloir supprimer cet entraînement ?</string>
     <string name="not_implemented">Cette fonctionnalité n\'est pas disponible</string>
+    <string name="finish_training">Terminer l\'entraînement</string>
 </resources>

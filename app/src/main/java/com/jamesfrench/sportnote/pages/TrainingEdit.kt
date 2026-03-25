@@ -17,6 +17,7 @@ import com.jamesfrench.sportnote.MainViewModel
 import com.jamesfrench.sportnote.R
 import com.jamesfrench.sportnote.components.MainNavigationButton
 import com.jamesfrench.sportnote.components.Navigation
+import com.jamesfrench.sportnote.components.SecondaryNavigationButton
 
 @Composable
 fun TrainingEdit(leftPadding: Dp, rightPadding: Dp, bottomContentPadding: Dp, viewModel: MainViewModel, navController: NavController) {
@@ -30,6 +31,10 @@ fun TrainingEdit(leftPadding: Dp, rightPadding: Dp, bottomContentPadding: Dp, vi
         }
 
         Navigation(leftPadding, rightPadding, bottomContentPadding) {
+            Spacer(Modifier.weight(1f))
+            SecondaryNavigationButton({
+                navController.popBackStack()
+            }, R.drawable.square_check_big, stringResource(R.string.finish_training))
             Spacer(Modifier.width(17.dp))
             MainNavigationButton({}, R.drawable.plus, stringResource(R.string.add_exercise))
         }

@@ -58,7 +58,7 @@ fun Navigation(leftPadding: Dp, rightPadding: Dp, bottomContentPadding: Dp, cont
                     max(17.dp - bottomContentPadding, 8.dp)
                 ),
             horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.Bottom
+            verticalAlignment = Alignment.CenterVertically
         ) {
             content()
         }
@@ -129,6 +129,30 @@ fun MainNavigationButton(onClick: () -> Unit, icon: Int, iconDescription: String
             contentDescription = iconDescription,
             modifier = Modifier.size(27.dp),
             tint = MaterialTheme.colorScheme.onPrimary
+        )
+    }
+}
+
+@Composable
+fun SecondaryNavigationButton(onClick: () -> Unit, icon: Int, iconDescription: String, modifier: Modifier = Modifier) {
+    Button(
+        onClick = onClick,
+        modifier = modifier
+            .size(45.dp),
+        contentPadding = PaddingValues(0.dp),
+        shape = RoundedCornerShape(100),
+        colors = ButtonColors(
+            containerColor = MaterialTheme.colorScheme.surfaceColorAtElevation(2.dp),
+            contentColor = MaterialTheme.colorScheme.onSurface,
+            disabledContainerColor = MaterialTheme.colorScheme.surfaceColorAtElevation(2.dp),
+            disabledContentColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f)
+        ),
+        elevation = null
+    ) {
+        Icon(
+            painterResource(icon),
+            contentDescription = iconDescription,
+            modifier = Modifier.size(23.dp),
         )
     }
 }
