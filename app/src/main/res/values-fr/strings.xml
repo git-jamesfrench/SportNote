@@ -12,4 +12,5 @@
     <string name="add_exercise">Ajouter exercice</string>
     <string name="delete_training_popup_title">Supprimer ?</string>
     <string name="delete_training_popup_description">La suppression est permanente, êtes-vous sûre de vouloir supprimer cet entraînement ?</string>
+    <string name="not_implemented">Cette fonctionnalité n\'est pas disponible</string>
 </resources>
