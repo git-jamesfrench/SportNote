@@ -43,8 +43,8 @@ fun Home(leftPadding: Dp, rightPadding: Dp, bottomContentPadding: Dp, viewModel:
     val rightContentPadding = max(17.dp - rightPadding, 0.dp)
     var expanded by remember { mutableStateOf(false) }
 
-    var trainingToDelete by remember { mutableStateOf(Training()) }
-    var trainingDeleteDialog by remember { mutableStateOf(false) }
+    val trainingToDelete = remember { mutableStateOf(Training()) }
+    val trainingDeleteDialog = remember { mutableStateOf(false) }
 
     LazyVerticalGrid(
         modifier = Modifier
@@ -56,8 +56,8 @@ fun Home(leftPadding: Dp, rightPadding: Dp, bottomContentPadding: Dp, viewModel:
     ) {
         items(viewModel.trainings) { training ->
             TrainingItem(training, { training ->
-                trainingToDelete = training
-                trainingDeleteDialog = true
+                trainingToDelete.value = training
+                trainingDeleteDialog.value = true
             }, viewModel, navController)
         }
     }
@@ -66,15 +66,15 @@ fun Home(leftPadding: Dp, rightPadding: Dp, bottomContentPadding: Dp, viewModel:
         stringResource(R.string.delete_training),
         stringResource(R.string.delete_training_popup_title),
         stringResource(R.string.delete_training_popup_description),
-        trainingDeleteDialog,
-        {trainingDeleteDialog = false}
+        trainingDeleteDialog.value,
+        { trainingDeleteDialog.value = false}
     ) {
         PopupButton("Confirmer") {
-            viewModel.delTraining(trainingToDelete.id)
-            trainingDeleteDialog = false
+            viewModel.delTraining(trainingToDelete.value.id)
+            trainingDeleteDialog.value = false
         }
         PopupButton("Annuler") {
-            trainingDeleteDialog = false
+            trainingDeleteDialog.value = false
         }
     }
     Navigation(leftPadding, rightPadding, bottomContentPadding) {
