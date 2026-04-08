@@ -30,7 +30,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.dp
@@ -38,7 +37,6 @@ import androidx.compose.ui.unit.max
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.zIndex
 import androidx.navigation.NavController
-import com.jamesfrench.sportnote.App
 import com.jamesfrench.sportnote.MainViewModel
 import com.jamesfrench.sportnote.R
 import com.jamesfrench.sportnote.components.DropdownMenu
@@ -51,7 +49,6 @@ import com.jamesfrench.sportnote.components.Popup
 import com.jamesfrench.sportnote.components.PopupButton
 import com.jamesfrench.sportnote.components.TrainingItem
 import com.jamesfrench.sportnote.database.Training
-import com.jamesfrench.sportnote.ui.theme.SportNoteTheme
 import com.jamesfrench.sportnote.ui.theme.fontJost
 import kotlinx.coroutines.launch
 
@@ -125,9 +122,10 @@ fun Home(leftPadding: Dp, rightPadding: Dp, bottomContentPadding: Dp, viewModel:
         stringResource(R.string.delete_training_popup_title),
         stringResource(R.string.delete_training_popup_description),
         trainingDeleteDialog.value,
-        { trainingDeleteDialog.value = false}
+        { trainingDeleteDialog.value = false},
+        MaterialTheme.colorScheme.error
     ) {
-        PopupButton("Confirmer") {
+        PopupButton("Confirmer", color = MaterialTheme.colorScheme.error) {
             viewModel.delTraining(trainingToDelete.value.id)
             trainingDeleteDialog.value = false
         }
@@ -169,13 +167,5 @@ fun Home(leftPadding: Dp, rightPadding: Dp, bottomContentPadding: Dp, viewModel:
                 navController.navigate("exercise_edit")
             }
         }, R.drawable.diamond_plus, stringResource(R.string.new_training))
-    }
-}
-
-@Preview(showBackground = true, backgroundColor = 0xFF121318)
-@Composable
-fun Preview() {
-    SportNoteTheme(darkTheme = true) {
-        App(PaddingValues(0.dp))
     }
 }
