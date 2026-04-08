@@ -49,12 +49,6 @@ fun TrainingItem(training: Training, onDelete: (training: Training) -> Unit, vie
     var offset by remember { mutableStateOf(Offset.Zero) }
     val interactionSource = remember { MutableInteractionSource() }
 
-    DisposableEffect(Unit) {
-        onDispose {
-            viewModel.selectedTraining = Training(id = -1)
-        }
-    }
-
     Box(
         modifier = Modifier
             .fillMaxWidth(1f)

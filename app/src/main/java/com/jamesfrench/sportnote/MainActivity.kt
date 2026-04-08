@@ -22,6 +22,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalLayoutDirection
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -54,7 +55,7 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun App(innerPadding: PaddingValues, viewModel: MainViewModel = MainViewModel()) {
+fun App(innerPadding: PaddingValues, viewModel: MainViewModel = viewModel()) {
     val navController = rememberNavController()
     val layoutDirection = LocalLayoutDirection.current
     val leftContentPadding = innerPadding.calculateLeftPadding(layoutDirection)
