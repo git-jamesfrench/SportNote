@@ -25,13 +25,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.jamesfrench.sportnote.R
-import com.jamesfrench.sportnote.ui.theme.SportNoteTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -102,24 +97,5 @@ fun PopupButton(text: String, color: Color = MaterialTheme.colorScheme.onSurface
         contentAlignment = Alignment.Center
     ) {
         Text(text, color = color)
-    }
-}
-
-@Preview(showBackground = true, backgroundColor = 0xFF121318)
-@Composable
-fun Preview() {
-    SportNoteTheme(darkTheme = true) {
-        Popup(
-            painterResource(R.drawable.trash),
-            stringResource(R.string.delete_training),
-            stringResource(R.string.delete_training_popup_title),
-            stringResource(R.string.delete_training_popup_description),
-            true,
-            { },
-            iconTint = MaterialTheme.colorScheme.error
-        ) {
-            PopupButton("Confirmer", color = MaterialTheme.colorScheme.error) {}
-            PopupButton("Annuler") {}
-        }
     }
 }

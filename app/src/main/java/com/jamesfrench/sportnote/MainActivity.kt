@@ -22,10 +22,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalLayoutDirection
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.jamesfrench.sportnote.components.Notifications
 import com.jamesfrench.sportnote.pages.Home
 import com.jamesfrench.sportnote.pages.TrainingEdit
 import com.jamesfrench.sportnote.ui.theme.SportNoteTheme
@@ -93,5 +95,13 @@ fun App(innerPadding: PaddingValues, viewModel: MainViewModel = viewModel()) {
         ) {
             TrainingEdit(leftContentPadding, rightContentPadding, bottomContentPadding, viewModel = viewModel, navController = navController)
         }
+    }
+}
+
+@Preview(showBackground = true, backgroundColor = 0xFF121318)
+@Composable
+fun Preview() {
+    SportNoteTheme(darkTheme = true) {
+        Notifications()
     }
 }
