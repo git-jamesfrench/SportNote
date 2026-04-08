@@ -1,6 +1,5 @@
 package com.jamesfrench.sportnote.pages
 
-import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -37,11 +36,6 @@ fun TrainingEdit(leftPadding: Dp, rightPadding: Dp, bottomContentPadding: Dp, vi
     val leftContentPadding = max(17.dp - leftPadding, 0.dp)
     val rightContentPadding = max(17.dp - rightPadding, 0.dp)
 
-    BackHandler {
-        viewModel.resetCurrentTraining()
-        navController.popBackStack()
-    }
-
     Box(Modifier
         .background(MaterialTheme.colorScheme.background)
         .fillMaxSize()
@@ -76,7 +70,6 @@ fun TrainingEdit(leftPadding: Dp, rightPadding: Dp, bottomContentPadding: Dp, vi
         Navigation(leftPadding, rightPadding, bottomContentPadding) {
             Spacer(Modifier.weight(1f))
             SecondaryNavigationButton({
-                viewModel.resetCurrentTraining()
                 navController.popBackStack()
             }, R.drawable.square_check_big, stringResource(R.string.finish_training))
             Spacer(Modifier.width(17.dp))
