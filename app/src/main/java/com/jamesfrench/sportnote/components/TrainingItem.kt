@@ -70,7 +70,7 @@ fun TrainingItem(training: Training, onDelete: (training: Training) -> Unit, vie
                         )
                     },
                     onTap = {
-                        viewModel.selectedTraining = training
+                        viewModel.trainingEditSelectedTraining = training
                         navController.navigate("exercise_edit")
                     },
                     onLongPress = { clickOffset ->

@@ -88,7 +88,7 @@ fun PopupButton(text: String, color: Color = MaterialTheme.colorScheme.onSurface
     Box(
         Modifier
             .clip(RoundedCornerShape(4.dp))
-            .background(MaterialTheme.colorScheme.surfaceTint, RoundedCornerShape(4.dp))
+            .background(MaterialTheme.colorScheme.surfaceColorAtElevation(0.dp), RoundedCornerShape(4.dp))
             .clickable(
                 onClick = onPress
             )

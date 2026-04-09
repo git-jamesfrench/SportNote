@@ -63,7 +63,7 @@ fun TrainingEdit(leftPadding: Dp, rightPadding: Dp, bottomContentPadding: Dp, vi
                 }
             }
             item {
-                Text(viewModel.selectedTraining.name)
+                Text(viewModel.trainingEditSelectedTraining.name)
             }
         }
 

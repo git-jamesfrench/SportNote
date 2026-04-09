@@ -9,31 +9,32 @@ import com.jamesfrench.sportnote.database.ObjectBox.store
 import com.jamesfrench.sportnote.database.Training
 
 class MainViewModel: ViewModel() {
+    // Variables
     private val trainingBox = store.boxFor(Training::class.java)
 
-    var selectedTraining by mutableStateOf(Training(id = -1))
+    var trainingEditSelectedTraining by mutableStateOf(Training(id = -1))
 
-    var trainings = mutableStateListOf<Training>()
+    var trainings = mutableStateListOf<Training>() // Temporary, needs a page system!
         private set
 
+    var isCreatingTraining by mutableStateOf(false)
+
+    // Functions
     init {
         trainings.addAll(trainingBox.all)
     }
 
     fun addTraining(): Boolean {
-        if (selectedTraining.id == -1L) {
+        if (!isCreatingTraining) {
             val newTrainingID = trainingBox.put(
                 Training(name = "Hello, World!")
             )
-            selectedTraining = trainingBox.get(newTrainingID)
+            trainingEditSelectedTraining = trainingBox.get(newTrainingID)
+            isCreatingTraining = true
             updateTrainings()
             return true
         }
         return false
-    }
-
-    fun resetCurrentTraining() {
-        selectedTraining = Training(id = -1)
     }
 
     fun updateTrainings() {
