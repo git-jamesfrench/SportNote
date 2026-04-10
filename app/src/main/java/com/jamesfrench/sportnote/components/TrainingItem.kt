@@ -77,8 +77,11 @@ fun TrainingItem(training: Training, onDelete: (training: Training) -> Unit, vie
                         )
                     },
                     onTap = {
-                        viewModel.trainingEditSelectedTraining = training
-                        navController.navigate("exercise_edit")
+                        if (!viewModel.isEditingTraining) {
+                            viewModel.trainingEditSelectedTraining = training
+                            viewModel.isEditingTraining = true
+                            navController.navigate("exercise_edit")
+                        }
                     },
                     onLongPress = { clickOffset ->
                         haptics.performHapticFeedback(HapticFeedbackType.LongPress)

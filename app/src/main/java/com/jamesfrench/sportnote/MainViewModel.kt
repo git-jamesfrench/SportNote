@@ -18,12 +18,12 @@ class MainViewModel: ViewModel() {
 
     var trainingEditSelectedTraining by mutableStateOf(Training(id = -1))
 
-    var isCreatingTraining by mutableStateOf(false)
+    var isEditingTraining by mutableStateOf(false)
 
     // Functions
 
     fun addTraining(): Boolean {
-        if (!isCreatingTraining) {
+        if (!isEditingTraining) {
             val newTrainingID = trainingBox.put(
                 Training(
                     name = "Hello, World!",
@@ -31,7 +31,7 @@ class MainViewModel: ViewModel() {
                 )
             )
             trainingEditSelectedTraining = trainingBox.get(newTrainingID)
-            isCreatingTraining = true
+            isEditingTraining = true
             return true
         }
         return false

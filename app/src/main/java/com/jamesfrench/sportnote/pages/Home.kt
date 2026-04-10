@@ -16,17 +16,12 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Snackbar
-import androidx.compose.material3.SnackbarHost
-import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
-import androidx.compose.material3.surfaceColorAtElevation
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -38,7 +33,6 @@ import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.max
 import androidx.compose.ui.unit.sp
-import androidx.compose.ui.zIndex
 import androidx.navigation.NavController
 import com.jamesfrench.sportnote.MainViewModel
 import com.jamesfrench.sportnote.R
@@ -53,7 +47,6 @@ import com.jamesfrench.sportnote.components.PopupButton
 import com.jamesfrench.sportnote.components.TrainingItem
 import com.jamesfrench.sportnote.database.Training
 import com.jamesfrench.sportnote.ui.theme.fontJost
-import kotlinx.coroutines.launch
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
@@ -61,9 +54,6 @@ fun Home(leftPadding: Dp, rightPadding: Dp, bottomContentPadding: Dp, viewModel:
     val leftContentPadding = max(17.dp - leftPadding, 0.dp)
     val rightContentPadding = max(17.dp - rightPadding, 0.dp)
     var expanded by remember { mutableStateOf(false) }
-    val scope = rememberCoroutineScope()
-    val snackbarHostState = remember { SnackbarHostState() }
-    val notImplementedString = stringResource(R.string.not_implemented)
 
     val trainingToDelete = remember { mutableStateOf(Training()) }
     val trainingDeleteDialog = remember { mutableStateOf(false) }
@@ -71,23 +61,10 @@ fun Home(leftPadding: Dp, rightPadding: Dp, bottomContentPadding: Dp, viewModel:
     var trainings by remember { mutableStateOf<List<Training>>(emptyList()) }
 
     LaunchedEffect(Unit) {
-        viewModel.isCreatingTraining = false
+        viewModel.isEditingTraining = false
         trainings = viewModel.getTrainings()
     }
 
-    SnackbarHost(
-        hostState = snackbarHostState,
-        modifier = Modifier
-            .padding(leftContentPadding, 0.dp, rightContentPadding, 0.dp)
-            .zIndex(5f)
-    ) { msg ->
-        Snackbar(
-            msg,
-            containerColor = MaterialTheme.colorScheme.surfaceColorAtElevation(7.dp),
-            contentColor = MaterialTheme.colorScheme.onSurface,
-            modifier = Modifier.padding(0.dp)
-        )
-    }
     LazyVerticalGrid(
         modifier = Modifier
             .fillMaxSize(),
@@ -154,28 +131,13 @@ fun Home(leftPadding: Dp, rightPadding: Dp, bottomContentPadding: Dp, viewModel:
             NavigationButton({expanded = true}, R.drawable.menu, stringResource(R.string.menu)) {
                 DropdownMenu(expanded, {expanded = false}, DpOffset((-5).dp, 0.dp)) {
                     DropdownMenuItem(stringResource(R.string.settings), painterResource(R.drawable.cog), stringResource(R.string.settings), true) {
-                        scope.launch {
-                            snackbarHostState.showSnackbar(notImplementedString)
-                        }
                         expanded = false
                     }
                 }
             }
-            NavigationButton({
-                scope.launch {
-                    snackbarHostState.showSnackbar(notImplementedString)
-                }
-            }, R.drawable.chart_no_axes_combined, stringResource(R.string.stats), true)
-            NavigationButton({
-                scope.launch {
-                    snackbarHostState.showSnackbar(notImplementedString)
-                }
-            }, R.drawable.notebook_tabs, stringResource(R.string.exercises), true)
-            NavigationButton({
-                scope.launch {
-                    snackbarHostState.showSnackbar(notImplementedString)
-                }
-            }, R.drawable.search, stringResource(R.string.search), true)
+            NavigationButton({}, R.drawable.chart_no_axes_combined, stringResource(R.string.stats), true)
+            NavigationButton({}, R.drawable.notebook_tabs, stringResource(R.string.exercises), true)
+            NavigationButton({}, R.drawable.search, stringResource(R.string.search), true)
         }
         Spacer(Modifier.width(17.dp))
         MainNavigationButton({
