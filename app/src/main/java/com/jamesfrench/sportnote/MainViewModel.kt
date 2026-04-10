@@ -1,5 +1,7 @@
 package com.jamesfrench.sportnote
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
@@ -7,6 +9,9 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import com.jamesfrench.sportnote.database.ObjectBox.store
 import com.jamesfrench.sportnote.database.Training
+import java.time.Instant
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
 
 class MainViewModel: ViewModel() {
     // Variables
@@ -27,7 +32,10 @@ class MainViewModel: ViewModel() {
     fun addTraining(): Boolean {
         if (!isCreatingTraining) {
             val newTrainingID = trainingBox.put(
-                Training(name = "Hello, World!")
+                Training(
+                    name = "Hello, World!",
+                    createdAt = System.currentTimeMillis()
+                )
             )
             trainingEditSelectedTraining = trainingBox.get(newTrainingID)
             isCreatingTraining = true
@@ -45,5 +53,17 @@ class MainViewModel: ViewModel() {
     fun delTraining(id: Long) {
         trainingBox.remove(id)
         updateTrainings()
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun convertTimestampToDate(timestamp: Long, pattern: String): String {
+        return Instant
+            .ofEpochSecond(timestamp / 1000)
+            .atZone(ZoneId.systemDefault())
+            .toLocalDateTime()
+            .format(
+                DateTimeFormatter
+                    .ofPattern(pattern)
+            )
     }
 }

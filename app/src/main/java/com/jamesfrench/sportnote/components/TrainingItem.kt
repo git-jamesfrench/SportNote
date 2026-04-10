@@ -1,5 +1,7 @@
 package com.jamesfrench.sportnote.components
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.indication
@@ -36,6 +38,7 @@ import com.jamesfrench.sportnote.MainViewModel
 import com.jamesfrench.sportnote.R
 import com.jamesfrench.sportnote.database.Training
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun TrainingItem(training: Training, onDelete: (training: Training) -> Unit, viewModel: MainViewModel, navController: NavController) {
     val density = LocalDensity.current
@@ -103,7 +106,7 @@ fun TrainingItem(training: Training, onDelete: (training: Training) -> Unit, vie
             Modifier.padding(17.dp, 12.dp)
         ) {
             Text(
-                training.name,
+                viewModel.convertTimestampToDate(training.createdAt, stringResource(R.string.full_date)),
                 color = MaterialTheme.colorScheme.onSurface
             )
         }

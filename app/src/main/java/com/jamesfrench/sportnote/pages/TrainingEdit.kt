@@ -1,10 +1,12 @@
 package com.jamesfrench.sportnote.pages
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -29,8 +31,10 @@ import com.jamesfrench.sportnote.R
 import com.jamesfrench.sportnote.components.MainNavigationButton
 import com.jamesfrench.sportnote.components.Navigation
 import com.jamesfrench.sportnote.components.SecondaryNavigationButton
+import com.jamesfrench.sportnote.ui.theme.fontInter
 import com.jamesfrench.sportnote.ui.theme.fontJost
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun TrainingEdit(leftPadding: Dp, rightPadding: Dp, bottomContentPadding: Dp, viewModel: MainViewModel, navController: NavController) {
     val leftContentPadding = max(17.dp - leftPadding, 0.dp)
@@ -49,17 +53,23 @@ fun TrainingEdit(leftPadding: Dp, rightPadding: Dp, bottomContentPadding: Dp, vi
             horizontalArrangement = Arrangement.spacedBy(12.dp)
         ) {
             item(span = { GridItemSpan(maxCurrentLineSpan) }) {
-                Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                Column(
+                    verticalArrangement = Arrangement.spacedBy(8.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally,
                     modifier = Modifier.padding(0.dp, 8.dp)
                 ) {
                     Text(
-                        stringResource(R.string.new_training),
+                        stringResource(R.string.training),
                         fontFamily = fontJost,
-                        fontSize = 20.sp,
+                        fontSize = 32.sp,
                         fontWeight = FontWeight.SemiBold
                     )
+                    Text(
+                        viewModel.convertTimestampToDate(viewModel.trainingEditSelectedTraining.createdAt, stringResource(R.string.full_date)),
+                        fontFamily = fontInter,
+                        fontSize = 14.sp,
+                    )
+
                 }
             }
             item {

@@ -13,4 +13,6 @@
     <string name="delete_training_popup_description">Deletion is permanent, are you sure you want to delete this training?</string>
     <string name="not_implemented">This functionality isn\'t available</string>
     <string name="finish_training">Finish training</string>
+    <string name="full_date">hh:mm a MM/dd/yyyy</string>
+    <string name="training">Training</string>
 </resources>

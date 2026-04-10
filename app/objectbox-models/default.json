@@ -5,7 +5,7 @@
   "entities": [
     {
       "id": "1:9051281560839133861",
-      "lastPropertyId": "2:7582499810750740181",
+      "lastPropertyId": "3:3903439526581532753",
       "name": "Training",
       "properties": [
         {
@@ -18,6 +18,11 @@
           "id": "2:7582499810750740181",
           "name": "name",
           "type": 9
+        },
+        {
+          "id": "3:3903439526581532753",
+          "name": "createdAt",
+          "type": 6
         }
       ],
       "relations": [

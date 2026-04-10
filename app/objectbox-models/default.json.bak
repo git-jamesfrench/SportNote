@@ -20,12 +20,42 @@
           "type": 9
         }
       ],
+      "relations": [
+        {
+          "id": "1:8704629450636915905",
+          "name": "exercises",
+          "targetId": "2:8721085210084880631"
+        }
+      ]
+    },
+    {
+      "id": "2:8721085210084880631",
+      "lastPropertyId": "3:1629229349419081669",
+      "name": "Exercise",
+      "properties": [
+        {
+          "id": "1:3346588402752096715",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:3241035647647527121",
+          "name": "exerciseType",
+          "type": 6
+        },
+        {
+          "id": "3:1629229349419081669",
+          "name": "weight",
+          "type": 5
+        }
+      ],
       "relations": []
     }
   ],
-  "lastEntityId": "1:9051281560839133861",
+  "lastEntityId": "2:8721085210084880631",
   "lastIndexId": "0:0",
-  "lastRelationId": "0:0",
+  "lastRelationId": "1:8704629450636915905",
   "lastSequenceId": "0:0",
   "modelVersion": 5,
   "modelVersionParserMinimum": 5,
