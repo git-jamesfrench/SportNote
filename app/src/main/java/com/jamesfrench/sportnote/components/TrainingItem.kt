@@ -7,11 +7,15 @@ import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.indication
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.PressInteraction
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.ripple
@@ -105,10 +109,16 @@ fun TrainingItem(training: Training, onDelete: (training: Training) -> Unit, vie
         Column(
             Modifier.padding(17.dp, 12.dp)
         ) {
-            Text(
-                viewModel.convertTimestampToDate(training.createdAt, stringResource(R.string.full_date)),
-                color = MaterialTheme.colorScheme.onSurface
-            )
+            if (training.exercises.isEmpty()) {
+                Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    Icon(
+                        painterResource(R.drawable.info),
+                        contentDescription = stringResource(R.string.no_exercises),
+                        modifier = Modifier.size(23.dp)
+                    )
+                    Text(stringResource(R.string.empty_training))
+                }
+            }
         }
 
         //Exercise()

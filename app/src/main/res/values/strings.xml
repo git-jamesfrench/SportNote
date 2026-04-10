@@ -15,4 +15,6 @@
     <string name="finish_training">Finish training</string>
     <string name="full_date">hh:mm a MM/dd/yyyy</string>
     <string name="training">Training</string>
+    <string name="no_exercises">No exercises at this time (•ᴗ•)</string>
+    <string name="empty_training">Empty training</string>
 </resources>

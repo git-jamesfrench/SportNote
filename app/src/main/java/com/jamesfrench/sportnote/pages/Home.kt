@@ -1,5 +1,7 @@
 package com.jamesfrench.sportnote.pages
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -53,6 +55,7 @@ import com.jamesfrench.sportnote.database.Training
 import com.jamesfrench.sportnote.ui.theme.fontJost
 import kotlinx.coroutines.launch
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun Home(leftPadding: Dp, rightPadding: Dp, bottomContentPadding: Dp, viewModel: MainViewModel, navController: NavController) {
     val leftContentPadding = max(17.dp - leftPadding, 0.dp)
@@ -65,8 +68,11 @@ fun Home(leftPadding: Dp, rightPadding: Dp, bottomContentPadding: Dp, viewModel:
     val trainingToDelete = remember { mutableStateOf(Training()) }
     val trainingDeleteDialog = remember { mutableStateOf(false) }
 
+    var trainings by remember { mutableStateOf<List<Training>>(emptyList()) }
+
     LaunchedEffect(Unit) {
         viewModel.isCreatingTraining = false
+        trainings = viewModel.getTrainings()
     }
 
     SnackbarHost(
@@ -114,13 +120,15 @@ fun Home(leftPadding: Dp, rightPadding: Dp, bottomContentPadding: Dp, viewModel:
                 )
             }
         }
-        items(viewModel.trainings) { training ->
+        items(trainings) { training ->
             TrainingItem(training, { training ->
                 trainingToDelete.value = training
                 trainingDeleteDialog.value = true
             }, viewModel, navController)
         }
     }
+
+    // Dialog
     Popup(
         painterResource(R.drawable.trash),
         stringResource(R.string.delete_training),
@@ -133,11 +141,14 @@ fun Home(leftPadding: Dp, rightPadding: Dp, bottomContentPadding: Dp, viewModel:
         PopupButton("Confirmer", color = MaterialTheme.colorScheme.error) {
             viewModel.delTraining(trainingToDelete.value.id)
             trainingDeleteDialog.value = false
+            trainings = viewModel.getTrainings()
         }
         PopupButton("Annuler") {
             trainingDeleteDialog.value = false
         }
     }
+
+    // Navigation
     Navigation(leftPadding, rightPadding, bottomContentPadding) {
         NavigationContainer {
             NavigationButton({expanded = true}, R.drawable.menu, stringResource(R.string.menu)) {
